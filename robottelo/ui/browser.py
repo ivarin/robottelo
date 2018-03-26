@@ -221,7 +221,7 @@ class DockerBrowser(object):
                 self.webdriver = Remote(
                     command_executor='http://127.0.0.1:{0}/wd/hub'.format(
                         self.container['HostPort']),
-                    desired_capabilities=webdriver.DesiredCapabilities.FIREFOX
+                    desired_capabilities=webdriver.DesiredCapabilities.CHROME
                 )
             except Exception as err:
                 # Capture the raised exception for later usage and wait
@@ -286,7 +286,7 @@ class DockerBrowser(object):
             },
             host_config=self._client.create_host_config(
                 publish_all_ports=True),
-            image='selenium/standalone-firefox',
+            image='selenium/standalone-chrome-debug',
             name=self._name.split('.', 4)[-1] + '_{0}'.format(
                     gen_string('alphanumeric', 3)),
             ports=[4444],
